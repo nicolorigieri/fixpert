@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: fixpert
+    env: node
+    plan: free
+    region: frankfurt
+    buildCommand: |
+      cd server
+      npm install
+    startCommand: |
+      cd server
+      node index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disks:
+      - name: data
+        mountPath: /opt/render/project/src/server/data
+        sizeGB: 1
