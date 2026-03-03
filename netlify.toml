@@ -1,0 +1,14 @@
+[build]
+  publish = "."
+  command = ""
+
+# SPA redirect: tutte le rotte puntano a index.html
+[[redirects]]
+  from = "/api/*"
+  to = "/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,4 +1,21 @@
-node_modules/
+# Sistema
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build/Cache
+.dist/
+build/
 dist/
+.cache/
+
+# Env/Secrets
 .env
-uploads/
+.env.*
+
+# Editor
+.vscode/
+.idea/
+*.swp

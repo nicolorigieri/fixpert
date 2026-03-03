@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fixpert - Piattaforma Intelligente per Lavori Edili</title>
+  <meta name="api-base" content="https://fixpert-api.onrender.com" />
+  <link rel="icon" href="fixpert-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=9" />
+</head>
+<body>
+  <a href="#main-app" class="skip-link">Salta al contenuto principale</a>
+  <div class="container">
+    <!-- Landing Page -->
+    <div id="landing" class="landing-page" role="tabpanel" aria-labelledby="tab-landing">
+      <div class="bg-mesh" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+      </div>
+      <header class="landing-header glass">
+        <h1>Fixpert</h1>
+        <p class="tagline">La piattaforma intelligente che rivoluziona il mondo dei lavori edili</p>
+        <div class="actions" style="justify-content:center;margin-top:12px">
+          <button id="theme-toggle-landing" class="btn-secondary" type="button">🌓 Tema</button>
+          <button id="hc-toggle-landing" class="btn-secondary" type="button" aria-pressed="false" title="Alto contrasto">⚪ Alto contrasto</button>
+        </div>
+      </header>
+
+      <main class="landing-content">
+        <section class="hero glass">
+          <div class="hero-content">
+            <h2>Connetti clienti e aziende con <span class="highlight">intelligenza artificiale</span></h2>
+            <p class="hero-description">
+              Fixpert ottimizza tempi, costi e materiali per ogni progetto edile.
+              Da stime automatiche a preventivi intelligenti, tutto in un'unica piattaforma.
+            </p>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Tipi di lavoro</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" id="materials-count">60+</span>
+                <span class="stat-label">Materiali</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Digitale</span>
+              </div>
+            </div>
+
+            <div class="cta-buttons">
+              <button class="btn-primary" onclick="showSection('clienti')">
+                🏠 Sono un Cliente
+              </button>
+              <button class="btn-secondary" onclick="showSection('aziende')">
+                🏢 Sono un'Azienda
+              </button>
+            </div>
+
+            <form class="company-search" role="search" aria-label="Ricerca aziende">
+              <label class="company-search__label" for="company-search-input">🔍 Cerca aziende affidabili</label>
+              <div class="company-search__controls">
+                <input
+                  id="company-search-input"
+                  type="search"
+                  name="query"
+                  placeholder="Es. impianto elettrico a Milano"
+                  autocomplete="off"
+                />
+                <button type="submit">Cerca ora</button>
+              </div>
+              <div class="company-search__tags" aria-label="Filtri rapidi">
+                <button type="button" data-tag="elettrico">⚡ Elettrico</button>
+                <button type="button" data-tag="coperture">🏠 Tetti & Coperture</button>
+                <button type="button" data-tag="piscine">🏊 Piscine & Wellness</button>
+                <button type="button" data-tag="ristrutturazioni">🛠️ Ristrutturazioni</button>
+                <button type="button" data-tag="giardini">🌿 Giardini</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="floating-cards-container">
+            <div class="floating-card electrical">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2ZM12 4.84L18.3 8.12L12 11.4L5.7 8.12L12 4.84ZM4 9.78V10C4 14.27 7.33 18.12 12 19.34C16.67 18.12 20 14.27 20 10V9.78L12 13.22L4 9.78Z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Impianto Elettrico</h4>
+                <p>Stima automatica cavi e componenti</p>
+                <div class="mini-icons">
+                  <span class="mini-icon primary">⚡</span>
+                  <span class="mini-icon aqua">🤖</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card plumbing">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Idraulica</h4>
+                <p>Calcolo tubi e materiali</p>
+                <div class="mini-icons">
+                  <span class="mini-icon aqua">💧</span>
+                  <span class="mini-icon amber">🚿</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card roofing">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Tetti & Copertura</h4>
+                <p>Coperture, impermeabilizzazioni</p>
+                <div class="mini-icons">
+                  <span class="mini-icon primary">🏠</span>
+                  <span class="mini-icon amber">🛡️</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card masonry">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Muratura</h4>
+                <p>Stima materiali e tempi</p>
+                <div class="mini-icons">
+                  <span class="mini-icon amber">🧱</span>
+                  <span class="mini-icon primary">📐</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card landscaping">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Giardini & Paesaggio</h4>
+                <p>Aree esterne, prato, irrigazione</p>
+                <div class="mini-icons">
+                  <span class="mini-icon green">🌿</span>
+                  <span class="mini-icon aqua">💡</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card pools">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2ZM12 4.84L18.3 8.12L12 11.4L5.7 8.12L12 4.84ZM4 9.78V10C4 14.27 7.33 18.12 12 19.34C16.67 18.12 20 14.27 20 10V9.78L12 13.22L4 9.78Z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Piscine & Wellness</h4>
+                <p>Costruzione, impianti, manutenzione</p>
+                <div class="mini-icons">
+                  <span class="mini-icon aqua">🏊</span>
+                  <span class="mini-icon primary">💎</span>
+                </div>
+              </div>
+            </div>
+            <div class="floating-card renovations">
+              <div class="icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2L2,7V10C2,16 6,20.5 12,22C18,20.5 22,16 22,10V7L12,2ZM12,4.84L18.3,8.12L12,11.4L5.7,8.12L12,4.84ZM4,9.78V10C4,14.27 7.33,18.12 12,19.34C16.67,18.12 20,14.27 20,10V9.78L12,13.22L4,9.78Z"/>
+                </svg>
+              </div>
+              <div class="info">
+                <h4>Ristrutturazioni</h4>
+                <p>Progetti completi chiavi in mano</p>
+                <div class="mini-icons">
+                  <span class="mini-icon primary">🛋️</span>
+                  <span class="mini-icon amber">🧰</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="social" class="tab-content animate-on-scroll" role="tabpanel" aria-labelledby="tab-social" aria-hidden="true">
+          <h2>Community: recensioni e valutazioni</h2>
+          <p>Scopri le esperienze degli utenti e consiglia i migliori professionisti.</p>
+
+          <div class="actions" style="align-items:center;gap:10px;flex-wrap:wrap">
+            <button id="btn-load-social">📰 Carica feed</button>
+            <input type="text" id="social-filter-location" placeholder="Filtra per località" style="flex:1;min-width:180px" />
+            <input type="text" id="social-filter-service" placeholder="Filtra per servizio (es. Elettrico)" style="flex:1;min-width:220px" />
+            <select id="social-sort" style="min-width:180px">
+              <option value="rating_desc">Ordina: Rating ⬇️</option>
+              <option value="rating_asc">Ordina: Rating ⬆️</option>
+              <option value="reviews_desc">Ordina: Recensioni ⬇️</option>
+              <option value="reviews_asc">Ordina: Recensioni ⬆️</option>
+              <option value="verified_first">Ordina: Verificate prima</option>
+              <option value="name_asc">Ordina: Nome A→Z</option>
+            </select>
+            <label style="display:flex;align-items:center;gap:6px;font-weight:600;color:#374151">
+              <input type="checkbox" id="social-only-verified" /> Solo verificate
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-weight:600;color:#374151">
+              <input type="checkbox" id="social-near-me" /> Vicino a me
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-weight:600;color:#374151">
+              <input type="checkbox" id="social-only-top" /> Solo Top Rated (≥ 4.5)
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-weight:600;color:#374151">
+              <input type="checkbox" id="social-only-new" /> Solo nuove (ultimi 14 giorni)
+            </label>
+          </div>
+          <div id="social-feed" class="panel"></div>
+
+          <h3>Lascia una recensione</h3>
+          <form id="form-review">
+            <div class="grid">
+              <label>Azienda (ID)
+                <input type="number" name="companyId" placeholder="Es. 1" required />
+              </label>
+              <label>Valutazione (1-5)
+                <input type="number" name="rating" min="1" max="5" value="5" required />
+              </label>
+            </div>
+            <label>Commento
+              <textarea name="comment" placeholder="Scrivi la tua esperienza..."></textarea>
+            </label>
+            <div class="actions">
+              <button type="submit">✍️ Invia recensione</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="features">
+          <h3>Perché scegliere Fixpert?</h3>
+          <div class="features-grid">
+            <div class="feature">
+              <div class="feature-icon">🎯</div>
+              <h4>Stime Precise</h4>
+              <p>Algoritmi intelligenti calcolano costi, materiali e tempi con precisione professionale</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">💰</div>
+              <h4>Ottimizzazione Costi</h4>
+              <p>Confronta fornitori e trova le migliori offerte per ogni componente del progetto</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">⚡</div>
+              <h4>Rapido e Semplice</h4>
+              <p>Da richiesta a preventivo in pochi click, senza complicazioni burocratiche</p>
+            </div>
+            <div class="feature">
+              <div class="feature-icon">📊</div>
+              <h4>Dati Persistenti</h4>
+              <p>Tutte le richieste e preventivi salvati in database, sempre accessibili</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="how-it-works">
+          <h3>Come funziona</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Richiedi Stima</h4>
+                <p>Descrivi il tuo progetto e ottieni checklist e preventivo automatico</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Confronta Offerte</h4>
+                <p>Visualizza materiali, costi e fornitori ottimizzati per il tuo progetto</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Scegli e Risparmia</h4>
+                <p>Ricevi preventivi da aziende verificate e avvia i lavori</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="landing-footer">
+        <button class="btn-ghost" onclick="showSection('fornitori')">
+          📦 Esplora Catalogo Materiali
+        </button>
+        <p> 2025 Fixpert - Piattaforma per l'edilizia intelligente</p>
+      </footer>
+    </div>
+
+    <!-- Main App Tabs -->
+    <div id="main-app" class="main-app" style="display: none;">
+      <header class="app-header">
+        <div class="header-nav">
+          <button class="back-btn" onclick="showLanding()">
+            ← Torna alla Home
+          </button>
+          <h1>SmartWorks</h1>
+        </div>
+        <p class="subtitle">Piattaforma intelligente per clienti e aziende del settore edile</p>
+      </header>
+
+      <main>
+        <nav class="tabs" role="tablist" aria-label="Sezioni principali">
+          <button class="tab active" role="tab" aria-selected="true" aria-controls="clienti" id="tab-clienti" data-tab="clienti">🏠 Per Clienti</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="aziende" id="tab-aziende" data-tab="aziende">🏢 Per Aziende</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="dashboard" id="tab-dashboard" data-tab="dashboard">📊 Dashboard</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="fornitori" id="tab-fornitori" data-tab="fornitori">📦 Offerte Materiali</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="account" id="tab-account" data-tab="account">👤 Account</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="social" id="tab-social" data-tab="social">💬 Social</button>
+        </nav>
+
+        <section id="clienti" class="tab-content animate-on-scroll-left" role="tabpanel" aria-labelledby="tab-clienti">
+          <h2>🏠 Per Clienti</h2>
+          <p>Ottieni stime automatiche, confronta preventivi e trova i migliori professionisti per i tuoi lavori.</p>
+
+          <form id="form-estimate">
+            <div class="grid">
+              <label>📋 Tipo di lavoro
+                <select name="jobType" required>
+                  <option value="electrical">⚡ Impianto elettrico</option>
+                  <option value="plumbing">🔧 Idraulica</option>
+                  <option value="hvac">❄️ Climatizzazione</option>
+                  <option value="masonry">🧱 Muratura</option>
+                  <option value="painting">🎨 Pittura</option>
+                  <option value="flooring">🏠 Pavimenti</option>
+                  <option value="roofing">🏘️ Tetti & Coperture</option>
+                  <option value="landscaping">🌳 Giardini & Paesaggio</option>
+                  <option value="pools">🏊 Piscine & Wellness</option>
+                  <option value="renovations">🏗️ Ristrutturazioni Complete</option>
+                </select>
+              </label>
+              <label>📐 Superficie (m²)
+                <input type="number" name="areaM2" placeholder="20" min="1" value="40" />
+              </label>
+              <label>🚪 Stanze
+                <input type="number" name="rooms" placeholder="1" min="1" value="2" />
+              </label>
+              <label>⏱️ Urgenza
+                <select name="urgency">
+                  <option value="normal">📅 Normale</option>
+                  <option value="urgent">⚡ Urgente (+30%)</option>
+                  <option value="night_weekend">🌙 Notte/Weekend (+60%)</option>
+                </select>
+              </label>
+              <label>⭐ Qualità materiali
+                <select name="materialsPref">
+                  <option value="standard">✅ Standard</option>
+                  <option value="premium">⭐ Premium (+25%)</option>
+                  <option value="economy">💰 Economy (-10%)</option>
+                </select>
+              </label>
+            </div>
+            <label>📝 Descrizione dettagliata
+              <textarea name="description" placeholder="Descrivi il problema, le tue esigenze specifiche o dettagli aggiuntivi..."></textarea>
+            </label>
+            <div class="uploads">
+              <div class="upload-card" id="upload-photos-card">
+                <div class="upload-card__header">
+                  <h4>📸 Foto del progetto</h4>
+                  <span class="hint">Max 5 immagini • JPG, PNG, WEBP, HEIC</span>
+                </div>
+                <div class="dropzone" id="drop-photos" role="button" tabindex="0" aria-label="Carica foto progetto">
+                  <div class="dropzone__icon">⬆️</div>
+                  <div>
+                    <strong>Trascina qui</strong> oppure <span class="dropzone__action">scegli dal dispositivo</span>
+                  </div>
+                  <div class="dropzone__hint">Suggerimento: includi panoramiche e dettagli dei problemi</div>
+                </div>
+                <input type="file" id="input-photos" name="photos" accept="image/*" multiple hidden />
+                <div class="preview-grid" id="preview-photos" aria-live="polite"></div>
+              </div>
+
+              <div class="upload-card" id="upload-docs-card">
+                <div class="upload-card__header">
+                  <h4>📄 Documenti & Permessi</h4>
+                  <span class="hint">Max 3 file • PDF o immagini</span>
+                </div>
+                <div class="dropzone" id="drop-docs" role="button" tabindex="0" aria-label="Carica documenti progetto">
+                  <div class="dropzone__icon">📥</div>
+                  <div>
+                    <strong>Trascina qui</strong> oppure <span class="dropzone__action">allega documenti</span>
+                  </div>
+                  <div class="dropzone__hint">Puoi caricare planimetrie, capitolati, autorizzazioni</div>
+                </div>
+                <input type="file" id="input-docs" name="documents" accept="application/pdf,image/*" multiple hidden />
+                <div class="preview-grid" id="preview-docs" aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="actions">
+              <button type="button" id="btn-diagnosi">🔍 Suggerimenti & Checklist</button>
+              <button type="submit">💰 Calcola Stima</button>
+            </div>
+          </form>
+
+          <div id="diagnosi-out" class="panel"></div>
+          <div id="stima-out" class="panel"></div>
+        </section>
+
+        <section id="dashboard" class="tab-content animate-on-scroll" role="tabpanel" aria-labelledby="tab-dashboard" aria-hidden="true">
+          <h2>📊 Dashboard Strategica</h2>
+          <p>Monitoraggio in tempo reale delle performance: richieste, preventivi, margini e soddisfazione clienti.</p>
+          <div class="dashboard-grid">
+            <div class="kpi-card" id="kpi-requests">
+              <div class="kpi-label">Richieste ultime 4 settimane</div>
+              <div class="kpi-value">—</div>
+              <div class="kpi-trend">Trend in calcolo...</div>
+            </div>
+            <div class="kpi-card" id="kpi-conversion">
+              <div class="kpi-label">Tasso conversione preventivi</div>
+              <div class="kpi-value">—</div>
+              <div class="kpi-trend">Trend in calcolo...</div>
+            </div>
+            <div class="kpi-card" id="kpi-avg-response">
+              <div class="kpi-label">Tempo medio risposta</div>
+              <div class="kpi-value">—</div>
+              <div class="kpi-trend">Trend in calcolo...</div>
+            </div>
+            <div class="kpi-card" id="kpi-satisfaction">
+              <div class="kpi-label">Indice soddisfazione clienti</div>
+              <div class="kpi-value">—</div>
+              <div class="kpi-trend">Trend in calcolo...</div>
+            </div>
+          </div>
+
+          <div class="dashboard-panels">
+            <div class="panel" id="chart-volume">
+              <h3>Volumi richieste & preventivi</h3>
+              <canvas id="chart-requests"></canvas>
+            </div>
+            <div class="panel" id="chart-materials">
+              <h3>Materiali & categorie più richieste</h3>
+              <div id="top-materials" class="list"></div>
+            </div>
+            <div class="panel" id="activity-feed">
+              <h3>Attività recenti</h3>
+              <ul id="activity-list" class="timeline"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="aziende" class="tab-content animate-on-scroll-right" role="tabpanel" aria-labelledby="tab-aziende" aria-hidden="true">
+          <h2>🏢 Per Aziende</h2>
+          <p>Gestisci il tuo profilo, ricevi richieste di preventivo e aumenta la tua visibilità.</p>
+
+          <div class="actions">
+            <button id="btn-load-requests">📥 Carica richieste</button>
+            <button id="btn-refresh-requests">🔄 Aggiorna</button>
+          </div>
+          <div class="pipeline-wrapper">
+            <h3>Pipeline richieste</h3>
+            <div id="pipeline-board" class="pipeline-board" aria-live="polite">
+              <div class="pipeline-column" data-stage="new">
+                <header>
+                  <span>Nuove</span>
+                  <strong class="badge" id="badge-new">0</strong>
+                </header>
+                <div class="pipeline-items" id="stage-new"></div>
+              </div>
+              <div class="pipeline-column" data-stage="review">
+                <header>
+                  <span>In valutazione</span>
+                  <strong class="badge" id="badge-review">0</strong>
+                </header>
+                <div class="pipeline-items" id="stage-review"></div>
+              </div>
+              <div class="pipeline-column" data-stage="quoted">
+                <header>
+                  <span>Preventivo inviato</span>
+                  <strong class="badge" id="badge-quoted">0</strong>
+                </header>
+                <div class="pipeline-items" id="stage-quoted"></div>
+              </div>
+              <div class="pipeline-column" data-stage="won">
+                <header>
+                  <span>Completate</span>
+                  <strong class="badge" id="badge-won">0</strong>
+                </header>
+                <div class="pipeline-items" id="stage-won"></div>
+              </div>
+              <div class="pipeline-column" data-stage="lost">
+                <header>
+                  <span>Non chiuse</span>
+                  <strong class="badge" id="badge-lost">0</strong>
+                </header>
+                <div class="pipeline-items" id="stage-lost"></div>
+              </div>
+            </div>
+            <div id="pipeline-empty" class="panel muted" hidden>
+              <p>Carica le richieste per visualizzare la pipeline. Ogni scheda include allegati, checkpoint e prossime azioni.</p>
+            </div>
+          </div>
+
+          <div id="requests-list" class="panel" hidden></div>
+
+          <h3>Profilo aziendale</h3>
+          <div id="company-status" class="panel"></div>
+          <form id="form-company">
+            <div class="grid">
+              <label>Nome azienda
+                <input type="text" name="name" placeholder="Es. Impianti Rossi" required />
+              </label>
+              <label>Località
+                <input type="text" name="location" placeholder="Città / zona" />
+              </label>
+              <label>Email aziendale
+                <input type="email" name="email" placeholder="info@azienda.it" />
+              </label>
+              <label>Telefono
+                <input type="text" name="phone" placeholder="+39 ..." />
+              </label>
+              <label>Logo (URL)
+                <input type="url" name="logoUrl" placeholder="https://.../logo.png" />
+              </label>
+              <label>Servizi offerti (separa con virgole)
+                <input type="text" name="services" placeholder="Elettrico, Domotica, Fotovoltaico" />
+              </label>
+              <label>Link (separa con virgole)
+                <input type="text" name="links" placeholder="https://sito.it, https://instagram.com/azienda" />
+              </label>
+              <label>Foto (URL, separa con virgole)
+                <input type="text" name="photos" placeholder="https://.../1.jpg, https://.../2.jpg" />
+              </label>
+              <label>Certificazioni (separa con virgole)
+                <input type="text" name="certifications" placeholder="SOA, ISO 9001, FER" />
+              </label>
+              <label>Note
+                <textarea name="note" placeholder="Nota aggiuntiva..."></textarea>
+              </label>
+            </div>
+            <label>Descrizione
+              <textarea name="description" placeholder="Breve presentazione dell'azienda e dei servizi"></textarea>
+            </label>
+            <div class="actions">
+              <button type="button" id="btn-load-company">📄 Carica profilo</button>
+              <button type="submit">💾 Salva profilo</button>
+            </div>
+            <p class="hint" style="color:#64748b;font-size:12px">Suggerimento: inserisci elenchi separati da virgole. Le foto verranno mostrate come galleria; il primo elemento sarà usato come logo.</p>
+          </form>
+        </section>
+
+        <section id="fornitori" class="tab-content animate-on-scroll-scale" role="tabpanel" aria-labelledby="tab-fornitori" aria-hidden="true">
+          <h2>Catalogo materiali e fornitori</h2>
+          <p>Scopri offerte competitive, confronta prezzi e ottimizza i tuoi acquisti per ogni progetto.</p>
+
+          <div class="actions">
+            <button id="btn-load-deals">📦 Vedi offerte</button>
+            <select id="filter-category">
+              <option value="">🔍 Tutte le categorie</option>
+              <option value="electrical">⚡ Elettrici</option>
+              <option value="plumbing">🔧 Idraulici</option>
+              <option value="hvac">❄️ Climatizzazione</option>
+              <option value="masonry">🧱 Muratura</option>
+              <option value="painting">🎨 Pittura</option>
+              <option value="flooring">🏠 Pavimenti</option>
+              <option value="roofing">🏘️ Tetti & Coperture</option>
+              <option value="landscaping">🌳 Giardini & Paesaggio</option>
+              <option value="pools">🏊 Piscine & Wellness</option>
+              <option value="renovations">🏗️ Ristrutturazioni</option>
+            </select>
+          </div>
+          <div id="deals-list" class="panel"></div>
+        </section>
+
+        <section id="account" class="tab-content animate-on-scroll" role="tabpanel" aria-labelledby="tab-account" aria-hidden="true">
+          <h2>👤 Account</h2>
+          <p>Gestisci il tuo profilo, preferenze e dati personali.</p>
+
+          <div class="grid two">
+            <div>
+              <h3>Registrazione</h3>
+              <form id="form-register">
+                <label>Email
+                  <input type="email" name="email" required />
+                </label>
+                <label>Password
+                  <input type="password" name="password" required />
+                </label>
+                <label>Ruolo
+                  <select name="role" required>
+                    <option value="client">Cliente</option>
+                    <option value="business">Azienda</option>
+                  </select>
+                </label>
+                <label>Nome
+                  <input type="text" name="name" />
+                </label>
+                <label>Telefono
+                  <input type="text" name="phone" />
+                </label>
+                <label>Località
+                  <input type="text" name="location" />
+                </label>
+                <div class="actions">
+                  <button type="submit">Crea account</button>
+                </div>
+              </form>
+            </div>
+            <div>
+              <h3>Login</h3>
+              <form id="form-login">
+                <label>Email
+                  <input type="email" name="email" required />
+                </label>
+                <label>Password
+                  <input type="password" name="password" required />
+                </label>
+                <div class="actions">
+                  <button type="submit">Accedi</button>
+                  <button type="button" id="btn-logout">Esci</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p><strong>Fixpert</strong> - Ottimizza tempi, costi e materiali per il tuo business edile</p>
+      </footer>
+    </div>
+    
+    <!-- Role chooser overlay -->
+    <div id="role-chooser" class="role-chooser" style="display:none;">
+      <div class="role-card">
+        <h3>Come vuoi usare Fixpert?</h3>
+        <div class="role-actions">
+          <button id="choose-client" class="btn-primary">🏠 Cliente</button>
+          <button id="choose-business" class="btn-secondary">🏢 Azienda</button>
+        </div>
+        <div class="role-hint">Potrai cambiare in qualsiasi momento.</div>
+      </div>
+    </div>
+
+    <!-- Assistant widget -->
+    <button id="assistant-toggle" class="assistant-btn" title="Assistente">🤖</button>
+    <div id="assistant-panel" class="assistant-panel" style="display:none;">
+      <div class="assistant-header">
+        <div><strong>Assistente</strong></div>
+        <button id="assistant-close" class="assistant-close">✖</button>
+      </div>
+      <div class="assistant-body">
+        <div class="assistant-step">
+          <label>Tipo di lavoro
+            <select id="as-jobType">
+              <option value="electrical">Impianto elettrico</option>
+              <option value="plumbing">Idraulica</option>
+              <option value="hvac">Climatizzazione</option>
+              <option value="masonry">Muratura</option>
+              <option value="painting">Pittura</option>
+              <option value="flooring">Pavimenti</option>
+              <option value="roofing">Tetti & Coperture</option>
+              <option value="landscaping">Giardini</option>
+              <option value="pools">Piscine</option>
+              <option value="renovations">Ristrutturazioni</option>
+            </select>
+          </label>
+          <div class="grid">
+            <label>Superficie (m²)
+              <input type="number" id="as-areaM2" value="40" min="1" />
+            </label>
+            <label>Stanze
+              <input type="number" id="as-rooms" value="2" min="1" />
+            </label>
+          </div>
+          <label>Descrizione
+            <textarea id="as-description" placeholder="Descrivi il progetto..."></textarea>
+          </label>
+          <div class="actions">
+            <button id="as-diagnose" class="btn-secondary">🔍 Suggerimenti</button>
+            <button id="as-estimate" class="btn-primary">💰 Calcola Stima</button>
+          </div>
+        </div>
+        <div id="as-out" class="panel"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=9"></script>
+  <script src="dashboard.js?v=1"></script>
+  <!-- Photo zoom modal -->
+  <div id="photo-modal" class="modal" style="display:none;">
+    <div class="modal-backdrop" id="photo-modal-backdrop"></div>
+    <div class="modal-content">
+      <button id="photo-modal-close" class="modal-close">✖</button>
+      <img id="photo-modal-img" alt="Foto" />
+    </div>
+  </div>
+</body>
+</html>
